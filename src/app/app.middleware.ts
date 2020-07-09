@@ -15,6 +15,10 @@ export const defaultErrorHandle = (
   response: Response,
   next: NextFunction,
 ) => {
+  if (error.message) {
+    console.log(error.message);
+  }
+
   let statusCode: number, message: string;
 
   switch (error.message) {

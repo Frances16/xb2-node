@@ -1,15 +1,39 @@
-export const getPosts = () => {
-  const data = [
-    {
-      content: '1',
-    },
-    {
-      content: '2',
-    },
-    {
-      content: '',
-    },
-  ];
+import { connection } from '../app/database/mysql';
+import { PostModel } from './post.model';
 
+export const getPosts = async () => {
+  const statement = `
+  SELECT * FROM post
+  `;
+  const [data] = await connection.promise().query(statement);
+  return data;
+};
+
+export const createPost = async (post: PostModel) => {
+  const statement = `
+  INSERT INTO post
+  SET ?
+  `;
+  const [data] = await connection.promise().query(statement, post);
+  return data;
+};
+
+export const updatePost = async (postId: number, post: PostModel) => {
+  const statement = `
+  UPDATE post
+  SET ?
+  WHERE id = ?
+  `;
+  const [data] = await connection.promise().query(statement, [post, postId]);
+  return data;
+};
+
+export const deletePost = async (postId: number) => {
+  const statement = `
+  DELETE 
+  FROM post
+  WHERE id = ?
+  `;
+  const [data] = await connection.promise().query(statement, postId);
   return data;
 };
