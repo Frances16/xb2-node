@@ -34,6 +34,14 @@ export const defaultErrorHandle = (
       statusCode = 409;
       message = '用户名已被占用';
       break;
+    case 'user not exist':
+      statusCode = 400;
+      message = '用户名不存在';
+      break;
+    case 'password not match':
+      statusCode = 400;
+      message = '密码不对';
+      break;
     default:
       statusCode = 500;
       message = '服务器出了点问题';

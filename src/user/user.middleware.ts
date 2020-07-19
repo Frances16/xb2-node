@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import bcryptjs from 'bcryptjs';
 import * as userService from './user.service';
+import bcryptjs from 'bcryptjs';
 
 export const validateUserData = async (
   request: Request,
