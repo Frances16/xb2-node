@@ -8,9 +8,12 @@ npm-debug.log*
 .DS_Store
 
 .vscode/*
+!.vscode/*.code-snippets
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 
 .env*
+config/*.key
+/uploads

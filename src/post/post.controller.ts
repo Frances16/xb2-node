@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import _ from 'lodash';
 import { getPosts, createPost, updatePost, deletePost } from './post.service';
 import { PostModel } from './post.model';
+import { parse } from 'path';
 
 export const index = async (
   request: Request,
@@ -22,8 +23,9 @@ export const store = async (
   next: NextFunction,
 ) => {
   const { title, content } = request.body;
+  const { id: userId } = request.user;
   try {
-    const data = await createPost({ title, content });
+    const data = await createPost({ title, content, userId });
     response.status(201).send(data);
   } catch (error) {
     next(error);
@@ -38,7 +40,7 @@ export const update = async (
   const { postId } = request.params;
   const post = _.pick(request.body, ['title', 'content']);
   try {
-    const data = await updatePost(postId, post);
+    const data = await updatePost(parseInt(postId, 10), post);
     response.send(data);
   } catch (error) {
     next(error);
@@ -52,7 +54,7 @@ export const destroy = async (
 ) => {
   const { postId } = request.params;
   try {
-    const data = await deletePost(postId);
+    const data = await deletePost(parseInt(postId, 10));
     response.send(data);
   } catch (error) {
     next(error);
