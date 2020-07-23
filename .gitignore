@@ -8,6 +8,7 @@ npm-debug.log*
 .DS_Store
 
 .vscode/*
+!.vscode/*.code-snippets
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -15,3 +16,4 @@ npm-debug.log*
 
 .env*
 config/*.key
+/uploads
